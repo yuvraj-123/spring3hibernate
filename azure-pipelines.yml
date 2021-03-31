@@ -10,16 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Gradle@2
+- task: Maven@3
   inputs:
-    gradleWrapperFile: 'gradlew'
-    workingDirectory: '/modules'
-    tasks: 'build'
+    mavenPomFile: 'pom.xml'
     publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    codeCoverageToolOption: 'JaCoCo'
-    codeCoverageClassFilesDirectories: 'build/classes/main/'
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: true
-    sqGradlePluginVersionChoice: 'specify'
-    sonarQubeGradlePluginVersion: '2.6.1'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
